@@ -1,0 +1,19 @@
+name = "huggingface-stream-proxy-worker"
+main = "src/worker.js"
+compatibility_date = "2026-08-15"
+
+# Non-secret configuration only.
+[vars]
+ALLOW_COUNTRIES = "*"
+PROXY_ALLOWED_HOSTS = "huggingface.co"
+MAX_REDIRECTS = "8"
+
+# Required production secret.
+# See README.md / README.vi.md for the verification-first deployment workflow.
+[secrets]
+required = [ "HF_TOKEN" ]
+
+# Deploy huggingface-models-assets-worker first; this Worker forwards /assets/* internally.
+[[services]]
+binding = "ASSET_SERVICE"
+service = "huggingface-models-assets-worker"

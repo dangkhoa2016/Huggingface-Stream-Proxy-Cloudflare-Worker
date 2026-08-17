@@ -1,0 +1,10 @@
+node_modules/
+.dev.vars
+.env
+.env.*
+!.env.example
+wrangler.toml
+*.log
+.DS_Store
+temp/
+.wrangler
